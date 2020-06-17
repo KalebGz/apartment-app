@@ -1,0 +1,23 @@
+<form action= "/tenants" method='post' >
+
+<label>Name:</label>
+<input type="text" name="tenant[name]"/>
+
+<label>Apartment Address:</label>
+ <select name= "tenant[apartment_id]">
+
+     <% @apartments.each do |apartment|%>
+         <option value=<%=apartment.id%>>
+             <%=apartment.address%>
+         </option>
+         <%end%>
+ </select>
+
+ <label> Create an Apartment </label>
+
+<label>Apartment Address:</label> 
+<input type="text" address="apartment[address]"/>
+
+<input type="submit" />
+
+</form>

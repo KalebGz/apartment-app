@@ -1,0 +1,12 @@
+<ul>Tenants:
+
+<%@tenants.each do |tenant| %>
+    <a href="/tenants/ <%=tenant.id%>">
+    <li> <%= tenant.name %> </li>
+    </a>
+    <%end%>
+</ul>
+
+<button>
+<a href="/tenants/new">New Tenant </a>
+</button>
