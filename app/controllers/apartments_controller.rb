@@ -24,7 +24,7 @@ class ApartmentsController < ApplicationController
   # Create a new apartment
   post '/apartments' do 
     apartment = Apartment.create(params) 
-    redirect "/apartments/#{apartment.id}"
+    redirect "/apartments"
   end 
 
   # # Form to edit an existing apartment 
