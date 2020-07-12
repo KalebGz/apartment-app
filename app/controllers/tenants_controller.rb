@@ -8,11 +8,6 @@ class TenantsController < ApplicationController
     erb :index 
   end 
 
-   # Form to create a new tenant 
-   get '/tenants/new' do 
-    @apartments = Apartment.all
-    erb :new
-  end 
 
   # See a single tenant 
   get '/tenants/:id' do 
@@ -20,11 +15,11 @@ class TenantsController < ApplicationController
     erb :show 
   end
 
-  # Form to edit an existing tenant 
-  get '/tenants/:id/edit' do 
-    @tenant = current_tenant
+  
+    # Form to create a new tenant 
+    get '/tenants/new' do 
     @apartments = Apartment.all
-    erb :edit 
+    erb :new
   end 
   
   # Create a new tenant
@@ -38,8 +33,14 @@ class TenantsController < ApplicationController
     redirect "/tenants/#{tenant.id}"
   end 
 
+  # Form to edit an existing tenant 
+  get '/tenants/:id/edit' do 
+    @tenant = current_tenant
+    @apartments = Apartment.all
+    erb :edit 
+  end 
 
-  # Edit an existing tenant 
+  # Update an existing tenant 
   patch '/tenants/:id/' do
     tenant = current_tenant
     tenant.update(params[:tenant])
