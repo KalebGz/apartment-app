@@ -41,7 +41,7 @@ class ApartmentsController < ApplicationController
   # end 
 
   # Delete an apartment 
-  delete 'apartments/:id' do 
+  delete '/apartments/:id' do 
     apartment = current_apartment
     apartment.destroy
     redirect '/apartments'
