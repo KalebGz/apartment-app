@@ -1,7 +1,7 @@
 <form action= "/tenants" method='post' >
 
-<label>Name:</label>
-<input type="text" name="tenant[name]"/>
+<label>Tenant Name:</label>
+<input type="text" name="tenant[name]"/> <br>
 
 <label>Apartment Address:</label>
  <select name= "tenant[apartment_id]">
@@ -11,12 +11,12 @@
              <%=apartment.address%>
          </option>
          <%end%>
- </select>
+ </select><br>
 
  <label> Create an Apartment </label>
 
 <label>Apartment Address:</label> 
-<input type="text" address="apartment[address]"/>
+<input type="text" name="apartment[address]"/><br>
 
 <input type="submit" />
 

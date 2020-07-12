@@ -7,14 +7,6 @@ class TenantsController < ApplicationController
     @tenants = Tenant.all 
     erb :index 
   end 
-
-
-  # See a single tenant 
-  get '/tenants/:id' do 
-    @tenant = current_tenant 
-    erb :show 
-  end
-
   
     # Form to create a new tenant 
     get '/tenants/new' do 
@@ -25,10 +17,12 @@ class TenantsController < ApplicationController
   # Create a new tenant
   post '/tenants' do 
     tenant = Tenant.new(params[:tenant])
-    if !params[:tenant][:name].empty? 
-      new_tenant = Apartment.create(params[:tenant]) 
-      tenant.apartment = new_tenant
-    end 
+
+    if !params[:apartment][:address].empty? 
+      new_apartment = Apartment.create(params[:apartment]) 
+      tenant.apartment = new_apartment
+    end
+    
     tenant.save
     redirect "/tenants/#{tenant.id}"
   end 
@@ -42,16 +36,24 @@ class TenantsController < ApplicationController
 
   # Update an existing tenant 
   patch '/tenants/:id/' do
+    puts "*******"
+    puts params
     tenant = current_tenant
     tenant.update(params[:tenant])
 
-    unless params[:apartment][:address].empty? 
-      new_tenant = Apartment.create(params[:apartment]) 
-      tenant.update(apartment_id: new_tenant.id)
+    if !params[:apartment][:address].empty? 
+      new_apartment = Apartment.create(params[:apartment]) 
+      tenant.update(apartment_id: new_apartment.id)
     end 
 
     redirect "/tenants/#{tenant.id}"
   end 
+
+    # See a single tenant 
+    get '/tenants/:id' do 
+      @tenant = current_tenant 
+      erb :show 
+    end
 
   # Delete an existing tenant 
   delete 'tenants/:id' do 
@@ -66,3 +68,5 @@ class TenantsController < ApplicationController
   end 
 
 end
+
+
