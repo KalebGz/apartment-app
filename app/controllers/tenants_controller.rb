@@ -22,7 +22,7 @@ class TenantsController < ApplicationController
       new_apartment = Apartment.create(params[:apartment]) 
       tenant.apartment = new_apartment
     end
-    
+
     tenant.save
     redirect "/tenants/#{tenant.id}"
   end 
@@ -35,9 +35,8 @@ class TenantsController < ApplicationController
   end 
 
   # Update an existing tenant 
-  patch '/tenants/:id/' do
-    puts "*******"
-    puts params
+  patch '/tenants/:id' do
+
     tenant = current_tenant
     tenant.update(params[:tenant])
 
@@ -56,7 +55,7 @@ class TenantsController < ApplicationController
     end
 
   # Delete an existing tenant 
-  delete 'tenants/:id' do 
+  delete '/tenants/:id' do 
     tenant = current_tenant
     tenant.destroy
     redirect '/tenants'
